@@ -1,0 +1,44 @@
+[tool.poetry]
+name = "hi-interview"
+version = "0.1.0"
+description = ""
+authors = []
+packages = [{include = "server"}]
+
+[tool.poetry.scripts]
+dev = "server.dev:main"
+
+[tool.poetry.dependencies]
+python = ">=3.12,<3.13"
+fastapi = "^0.115.0"
+sqlalchemy = "^2.0.0"
+psycopg = {version = "^3.2.0", extras = ["binary"]}
+uvicorn = "^0.34.0"
+pydantic = "^2.0.0"
+python-dotenv = "^1.0.0"
+alembic = "^1.13.0"
+bcrypt = "^4.2.0"
+PyJWT = "^2.8.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+httpx = "^0.28.0"
+ruff = "^0.11.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+lint.select = ["E", "F", "I"]
+lint.ignore = ["E501"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+docstring-code-format = true
+
+[tool.pytest.ini_options]
+testpaths = ["test"]
