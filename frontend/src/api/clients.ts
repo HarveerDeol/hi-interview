@@ -18,6 +18,15 @@ export default class ClientsApi {
         return response.data;
     };
 
+    public createClient = async (email: string, firstName: string, lastName: string): Promise<Client> => {
+        const response = await this.axiosInstance.post<Client>("client", {
+            email,
+            first_name: firstName,
+            last_name: lastName,
+        });
+        return response.data;
+    };
+
     public listNotes = async (clientId: string): Promise<Note[]> => {
         const response = await this.axiosInstance.get<{ data: Note[] }>(`client/${clientId}/note`);
         return response.data.data;
