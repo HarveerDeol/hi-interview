@@ -10,6 +10,7 @@ from server.data.models.base import Base
 
 if TYPE_CHECKING:
     from server.data.models.user import User
+    from server.data.models.note import Note
 
 
 class Client(Base):
@@ -33,4 +34,8 @@ class Client(Base):
 
     assigned_user: Mapped["User | None"] = relationship(
         "User", foreign_keys=[assigned_user_id]
+    )
+
+    notes: Mapped[list["Note"]] = relationship(
+        "Note", back_populates="client", cascade="all, delete-orphan"
     )

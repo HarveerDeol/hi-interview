@@ -7,3 +7,11 @@ export interface Client {
     created_at: string;
     updated_at: string;
 }
+
+export interface Note {
+    id: string;
+    client_id: string;
+    created_by_user_id: string;
+    content: string;
+    created_at: string;
+}
