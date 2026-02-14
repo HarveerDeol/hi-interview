@@ -1,0 +1,21 @@
+.container {
+    padding: var(--mantine-spacing-xl);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--mantine-spacing-lg);
+}
+
+.title {
+    margin: 0;
+}
+
+.details {
+    background-color: var(--mantine-color-gray-0);
+    padding: var(--mantine-spacing-lg);
+    border-radius: var(--mantine-radius-md);
+    max-width: 600px;
+}

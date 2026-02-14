@@ -6,10 +6,14 @@ import { useEffect, useState } from "react";
 import { useApi } from "@/api/context";
 import { Client } from "@/types/clients";
 
+import { useRouter } from "next/navigation";
+
 import styles from "./page.module.scss";
 
 export default function ClientsPage() {
     const api = useApi();
+    const router = useRouter();
+
     const [clients, setClients] = useState<Client[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -45,14 +49,29 @@ export default function ClientsPage() {
                     </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
-                    {clients.map(client => (
-                        <Table.Tr key={client.id}>
-                            <Table.Td>{client.first_name} {client.last_name}</Table.Td>
+                    {clients.map((client) => (
+                        <Table.Tr
+                            key={client.id}
+                            onClick={() => router.push(`/clients/${client.id}`)}
+                            style={{ cursor: "pointer" }}
+                            tabIndex={0}
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter" || e.key === " ") {
+                                    router.push(`/clients/${client.id}`);
+                                }
+                            }}
+                        >
+                            <Table.Td>
+                                {client.first_name} {client.last_name}
+                            </Table.Td>
                             <Table.Td>{client.email}</Table.Td>
-                            <Table.Td>{client.assigned_user_id ? "Yes" : "No"}</Table.Td>
+                            <Table.Td>
+                                {client.assigned_user_id ? "Yes" : "No"}
+                            </Table.Td>
                         </Table.Tr>
                     ))}
                 </Table.Tbody>
+
             </Table>
         </div>
     );
